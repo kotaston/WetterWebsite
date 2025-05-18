@@ -125,12 +125,14 @@ async function takeElferLandeplatzScreenshot(browser) {
 
 // Diese Funktion ruft alle Screenshot-Funktionen nacheinander auf
 async function takeAllScreenshots() {
+  await startBrowser()
   await takeDHVScreenshot(browser);
   await takePatscherkofelScreenshot(browser);
   await takeElferBergstationScreenshot(browser);
   await takeElferStartplatz1Screenshot(browser);
   await takeElferLandeplatzScreenshot(browser);
   // weitere Screenshots hier hinzufügen...
+  await browser.close();
 }
 
 takeAllScreenshots() // später wieder entfernen, nur zum testen
