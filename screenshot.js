@@ -9,7 +9,11 @@ const launchOptions = {
 };
 
 // browser einmal öffnen:
-const browser = await puppeteer.launch(launchOptions)
+let browser;
+
+async function startBrowser() {
+  browser = await puppeteer.launch(launchOptions); //await muss innerhalb von async function sein
+}
 
 //DHV Wetter
 async function takeDHVScreenshot(browser) {
