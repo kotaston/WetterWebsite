@@ -3,6 +3,7 @@ set -o errexit  # Exit on errors
 
 npm install
 # npm run build # Uncomment if you have a build step
+npx puppeteer install
 
 # Puppeteer cache management
 if [[ ! -d $PUPPETEER_CACHE_DIR ]]; then
