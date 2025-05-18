@@ -4,7 +4,7 @@ const path = require('path');
 
 // reusable launch options
 const launchOptions = {
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // fallback if needed
+  // executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // fallback if needed
   headless: true,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
@@ -132,6 +132,6 @@ async function takeAllScreenshots() {
   // weitere Screenshots hier hinzufügen...
 }
 
-takeAllScreenshots() // später wieder entfernen, nur zum testen
+// takeAllScreenshots() // später wieder entfernen, nur zum testen
 
 module.exports = { takeAllScreenshots };
