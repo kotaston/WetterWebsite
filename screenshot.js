@@ -2,13 +2,9 @@ const puppeteer = require('puppeteer');
 const sharp = require('sharp');
 const path = require('path');
 
-// manuell chromium referenzieren, da render kein chromium hat. muss chromium manuell mitpushen, weil es osnt in git.ignore mitdrin ist
-const browserFetcher = puppeteer.createBrowserFetcher();
-const chromium = browserFetcher.revisionInfo(puppeteer._preferredRevision);
 
 // reusable launch options
 const launchOptions = {
-  executablePath: chromium.executablePath,
   headless: true,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
