@@ -8,10 +8,12 @@ const launchOptions = {
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
 
-//DHV Wetter
-async function takeDHVScreenshot() {
+// browser einmal öffnen:
+const browser = await puppeteer.launch(launchOptions)
 
-  const browser = await puppeteer.launch(launchOptions);
+//DHV Wetter
+async function takeDHVScreenshot(browser) {
+
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 2000 });
@@ -27,7 +29,7 @@ async function takeDHVScreenshot() {
 
   // Screenshot vom ganzen sichtbaren Bereich
   const screenshotBuffer = await page.screenshot();
-  await browser.close();
+  await page.close()
 
   const croppedBuffer = await sharp(screenshotBuffer)
   .extract({ width: 820, height: 855, left: 30, top: 560})
@@ -40,15 +42,14 @@ async function takeDHVScreenshot() {
 }
 
 // Patscherkofel Wind
-async function takePatscherkofelScreenshot() {
+async function takePatscherkofelScreenshot(browser) {
   
-  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   await page.goto('https://wetter.orf.at/tirol/patscherkofel/', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
-  await browser.close();
+  await page.close()
 
   const croppedBuffer = await sharp(screenshotBuffer)
     .extract({ width: 600, height: 320, left: 30, top: 30})
@@ -59,15 +60,14 @@ async function takePatscherkofelScreenshot() {
   console.log('Patscherkofel Screenshot gespeichert:', new Date().toLocaleTimeString());
 }
 // Elfer Bergstation
-async function takeElferBergstationScreenshot() {
+async function takeElferBergstationScreenshot(browser) {
   
-  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
   await page.goto('https://elferbahnen.alpindigital.at/bergstation.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
-  await browser.close();
+  await page.close()
 
   const croppedBuffer = await sharp(screenshotBuffer)
     .extract({ width: 1280, height: 400, left: 0, top: 1600})
@@ -79,15 +79,14 @@ async function takeElferBergstationScreenshot() {
 }
 
 // Elfer Startplatz 1
-async function takeElferStartplatz1Screenshot() {
+async function takeElferStartplatz1Screenshot(browser) {
   
-  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
   await page.goto('https://elferbahnen.alpindigital.at/startplatz1.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
-  await browser.close();
+  await page.close()
 
   const croppedBuffer = await sharp(screenshotBuffer)
     .extract({ width: 1280, height: 370, left: 0, top: 1530})
@@ -99,15 +98,14 @@ async function takeElferStartplatz1Screenshot() {
 }
 
 // Elfer Landeplatz
-async function takeElferLandeplatzScreenshot() {
-  
-  const browser = await puppeteer.launch(launchOptions);
+async function takeElferLandeplatzScreenshot(browser) {
+  ;
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2300 });
   await page.goto('https://elferbahnen.alpindigital.at/landeplatz.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
-  await browser.close();
+  await page.close()
 
   const croppedBuffer = await sharp(screenshotBuffer)
     .extract({ width: 1280, height: 350, left: 0, top: 1750})
@@ -123,11 +121,11 @@ async function takeElferLandeplatzScreenshot() {
 
 // Diese Funktion ruft alle Screenshot-Funktionen nacheinander auf
 async function takeAllScreenshots() {
-  await takeDHVScreenshot();
-  await takePatscherkofelScreenshot();
-  await takeElferBergstationScreenshot();
-  await takeElferStartplatz1Screenshot();
-  await takeElferLandeplatzScreenshot();
+  await takeDHVScreenshot(browser);
+  await takePatscherkofelScreenshot(browser);
+  await takeElferBergstationScreenshot(browser);
+  await takeElferStartplatz1Screenshot(browser);
+  await takeElferLandeplatzScreenshot(browser);
   // weitere Screenshots hier hinzufügen...
 }
 
