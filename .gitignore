@@ -1,1 +1,29 @@
+
+# Node modules - nie pushen!
 node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Umgebungsdateien (meist sensible Daten)
+.env
+
+# OS-Dateien
+.DS_Store
+Thumbs.db
+
+
+# Puppeteer Cache (wenn du ihn nicht pushen willst)
+.puppeteer/
+
+# Sonstige temporäre Dateien
+tmp/
+temp/
+
+# IDE / Editor config files
+.vscode/
+.idea/

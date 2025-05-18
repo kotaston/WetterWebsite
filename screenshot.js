@@ -2,9 +2,9 @@ const puppeteer = require('puppeteer');
 const sharp = require('sharp');
 const path = require('path');
 
-
 // reusable launch options
 const launchOptions = {
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // fallback if needed
   headless: true,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
