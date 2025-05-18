@@ -2,12 +2,21 @@ const puppeteer = require('puppeteer');
 const sharp = require('sharp');
 const path = require('path');
 
+// manuell chromium referenzieren, da render kein chromium hat. muss chromium manuell mitpushen, weil es osnt in git.ignore mitdrin ist
+const browserFetcher = puppeteer.createBrowserFetcher();
+const chromium = browserFetcher.revisionInfo(puppeteer._preferredRevision);
+
+// reusable launch options
+const launchOptions = {
+  executablePath: chromium.executablePath,
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+};
+
 //DHV Wetter
 async function takeDHVScreenshot() {
 
-  const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 2000 });
@@ -38,9 +47,7 @@ async function takeDHVScreenshot() {
 // Patscherkofel Wind
 async function takePatscherkofelScreenshot() {
   
-  const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   await page.goto('https://wetter.orf.at/tirol/patscherkofel/', { waitUntil: 'networkidle2' });
@@ -59,9 +66,7 @@ async function takePatscherkofelScreenshot() {
 // Elfer Bergstation
 async function takeElferBergstationScreenshot() {
   
-  const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
   await page.goto('https://elferbahnen.alpindigital.at/bergstation.php', { waitUntil: 'networkidle2' });
@@ -81,9 +86,7 @@ async function takeElferBergstationScreenshot() {
 // Elfer Startplatz 1
 async function takeElferStartplatz1Screenshot() {
   
-  const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
   await page.goto('https://elferbahnen.alpindigital.at/startplatz1.php', { waitUntil: 'networkidle2' });
@@ -103,9 +106,7 @@ async function takeElferStartplatz1Screenshot() {
 // Elfer Landeplatz
 async function takeElferLandeplatzScreenshot() {
   
-  const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2300 });
   await page.goto('https://elferbahnen.alpindigital.at/landeplatz.php', { waitUntil: 'networkidle2' });
