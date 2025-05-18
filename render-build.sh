@@ -1,23 +1,14 @@
 #!/usr/bin/env bash
-# render-build.sh
+set -o errexit  # Exit on errors
 
-# Beende das Skript sofort, wenn ein Fehler auftritt
-set -o errexit
-
-echo "==> Starte npm install..."
 npm install
+# npm run build # Uncomment if you have a build step
 
-# Optional: andere Build-Schritte (z.B. npm run build), falls du sie brauchst
-# npm run build
-
-# Puppeteer-Cache-Verzeichnis
-PUPPETEER_CACHE_PATH="$PUPPETEER_CACHE_DIR"
-
-# Puppeteer-Cache speichern oder laden
-if [[ -d "$XDG_CACHE_HOME/puppeteer" ]]; then
-  echo "==> Kopiere Puppeteer-Cache in $PUPPETEER_CACHE_PATH"
-  mkdir -p "$PUPPETEER_CACHE_PATH"
-  cp -r "$XDG_CACHE_HOME/puppeteer/." "$PUPPETEER_CACHE_PATH"
+# Puppeteer cache management
+if [[ ! -d $PUPPETEER_CACHE_DIR ]]; then
+  echo "...Copying Puppeteer Cache from Build Cache"
+  cp -R $XDG_CACHE_HOME/puppeteer/ $PUPPETEER_CACHE_DIR || echo "No Puppeteer cache found to copy."
 else
-  echo "==> Kein Puppeteer-Cache gefunden. Wird beim ersten Start installiert."
+  echo "...Storing Puppeteer Cache in Build Cache"
+  cp -R $PUPPETEER_CACHE_DIR $XDG_CACHE_HOME
 fi
