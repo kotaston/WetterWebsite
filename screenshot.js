@@ -4,7 +4,7 @@ const path = require('path');
 
 // reusable launch options
 const launchOptions = {
-  // executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // fallback if needed
+  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // fallback if needed
   headless: true,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
@@ -16,7 +16,7 @@ async function takeDHVScreenshot() {
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 2000 });
-  await page.goto('https://www.dhv.de/wetter/dhv-wetter/', { waitUntil: 'networkidle2' });
+  await page.goto('https://www.dhv.de/wetter/dhv-wetter/', { waitUntil: 'domcontentloaded' });
 
   // ✅ Warte auf Cookie-Banner (wenn vorhanden)
   await page.click('button.select-all');
@@ -46,7 +46,7 @@ async function takePatscherkofelScreenshot() {
   const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
-  await page.goto('https://wetter.orf.at/tirol/patscherkofel/', { waitUntil: 'networkidle2' });
+  await page.goto('https://wetter.orf.at/tirol/patscherkofel/', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
   await browser.close();
@@ -65,7 +65,7 @@ async function takeElferBergstationScreenshot() {
   const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
-  await page.goto('https://elferbahnen.alpindigital.at/bergstation.php', { waitUntil: 'networkidle2' });
+  await page.goto('https://elferbahnen.alpindigital.at/bergstation.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
   await browser.close();
@@ -85,7 +85,7 @@ async function takeElferStartplatz1Screenshot() {
   const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
-  await page.goto('https://elferbahnen.alpindigital.at/startplatz1.php', { waitUntil: 'networkidle2' });
+  await page.goto('https://elferbahnen.alpindigital.at/startplatz1.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
   await browser.close();
@@ -105,7 +105,7 @@ async function takeElferLandeplatzScreenshot() {
   const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2300 });
-  await page.goto('https://elferbahnen.alpindigital.at/landeplatz.php', { waitUntil: 'networkidle2' });
+  await page.goto('https://elferbahnen.alpindigital.at/landeplatz.php', { waitUntil: 'domcontentloaded' });
 
   const screenshotBuffer = await page.screenshot();
   await browser.close();
@@ -132,6 +132,6 @@ async function takeAllScreenshots() {
   // weitere Screenshots hier hinzufügen...
 }
 
-// takeAllScreenshots() // später wieder entfernen, nur zum testen
+takeAllScreenshots() // später wieder entfernen, nur zum testen
 
 module.exports = { takeAllScreenshots };
