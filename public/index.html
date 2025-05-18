@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wetter-Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>☀️🌈 Wetter-Dashboard</h1>
+    <nav>
+      <a href="#großwetter">Föhndiagramm & DHV Wetter</a>
+      <a href="#patscherkofel">Patscherkofel</a>
+      <a href="#elfer">Elfer</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Föhndiagramm und DHV Wetter Modul -->
+    <section id="großwetter" class="card">
+      <h2>Föhndiagramm & DHV Wetter</h2>
+      <div class="image-row">
+        <div class="image-container">
+          <img id="foehndiagramm" src="" alt="Föhndiagramm Tirol" />
+          <div class="source">
+            Quelle: <a href="https://wetterring.at/profiwetter/foehndiagramm-tirol" target="_blank">wetterring.at/profiwetter/foehndiagramm-tirol</a>
+          </div>
+        </div>
+        <div class="image-container">
+          <img id="dhvWetterScreenshot" src="DHVWetter_screenshot.png" alt="Flugwetter DHV Nordalpen" />
+          <div class="source">
+            Quelle: <a href="https://www.dhv.de/wetter/dhv-wetter/" target="_blank">www.dhv.de/wetter/dhv-wetter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patscherkofel Messstation Modul -->
+    <section id="patscherkofel" class="card">
+      <h2>Patscherkofel</h2>
+      <img id="patscherkofel_screenshot" src="patscherkofel_screenshot.png" alt="Winddiagramm Patscherkofel" />
+      <div class="source">
+        Quelle: <a href="https://wetter.orf.at/tirol/patscherkofel/" target="_blank">wetter.orf.at/tirol/patscherkofel/</a>
+      </div>
+    </section>
+
+    <!-- Elfer  -->
+    <section id="elfer" class="card">
+      <h2>Elfer</h2>
+      <div class="image-containerElfer">
+        <h3>Bergstation:</h3>
+        <img id="ElferBergstation_screenshot" src="ElferBergstation_screenshot.png" alt="Messwerte Bergstation Elfer" />
+        <div class="source">
+          Quelle: <a href="https://elferbahnen.alpindigital.at/bergstation.php" target="_blank">elferbahnen.alpindigital.at/bergstation.php</a>
+        </div>
+      </div>
+      <div class="image-containerElfer">
+        <h3>Startplatz 1:</h3>
+        <img id="ElferStartplatz1_screenshot" src="ElferStartplatz1_screenshot.png" alt="Messwerte Startplatz 1 Elfer" />
+        <div class="source">
+          Quelle: <a href="https://elferbahnen.alpindigital.at/startplatz1.php" target="_blank">elferbahnen.alpindigital.at/startplatz1.php</a>
+        </div>
+      </div>
+      <div class="image-containerElfer">
+        <h3>Landeplatz:</h3>
+        <img id="ElferLandeplatz_screenshot" src="ElferLandeplatz_screenshot.png" alt="Messwerte Landeplatz Elfer" />
+        <div class="source">
+          Quelle: <a href="https://elferbahnen.alpindigital.at/landeplatz.php" target="_blank">elferbahnen.alpindigital.at/landeplatz.php</a>
+        </div>
+      </div>     
+    </section>
+
+
+
+    <!-- Weitere Sektionen später hier einfügen -->
+  </main>
+
+  <footer>
+    <p>&copy; 2025 – WeatherDash</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
