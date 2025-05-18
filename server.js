@@ -1,18 +1,17 @@
 
+const app = express();
+
 // auf port von Render hören, der dynmisch verändert werden kann
 const port = process.env.PORT || 3000; // process.env.PORT kommt von Render, fallback ist 3000 für lokal
 app.listen(port, () => {
   console.log(`Server läuft auf Port ${port}`);
 });
 
-
 const express = require('express');
 const path = require('path');
 // Screenshots machen, dafür wird in screenshot.js auch der node.js gestartet.
 const { takeAllScreenshots } = require('./screenshot');
 
-const app = express();
-const PORT = 3000;
 
 // Statische Dateien im "public"-Ordner bereitstellen
 app.use(express.static(path.join(__dirname, 'public')));
